@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "580268459147",
+    "firebase_url": "https://porhub-bf02f.firebaseio.com",
+    "project_id": "porhub-bf02f",
+    "storage_bucket": "porhub-bf02f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580268459147:android:caa471e736bc54c9d4808e",
+        "android_client_info": {
+          "package_name": "com.example.porhub_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580268459147-o2t97gece1ijruotmrl27udo00jd7i9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5pIhyXdclKxgJiGzU4eLkRql1BIvHZCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580268459147-o2t97gece1ijruotmrl27udo00jd7i9t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
