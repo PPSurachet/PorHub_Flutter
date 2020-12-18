@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/models/movie.dart';
 
-class BuildFavourBtn extends StatelessWidget {
-  const BuildFavourBtn({
+class BuildTrailerBtn extends StatelessWidget {
+  const BuildTrailerBtn({
     Key key,
     @required this.record,
   }) : super(key: key);
@@ -18,16 +18,16 @@ class BuildFavourBtn extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        color: Colors.red[900],
+        color: Colors.grey.shade200,
         child: Text(
-          "Add Favourite",
+          "Watch Trailer",
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
         ),
-        onPressed: () => print(record.title),
+        onPressed: () => print("Trailer " + record.title),
       ),
     );
   }
