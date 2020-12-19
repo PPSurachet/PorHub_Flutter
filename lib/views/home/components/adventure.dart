@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/views/home/components/buildImage.dart';
 
-class RecommendMovie extends StatelessWidget {
-  const RecommendMovie({Key key}) : super(key: key);
+class AdventureMovie extends StatelessWidget {
+  const AdventureMovie({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,10 @@ class RecommendMovie extends StatelessWidget {
               margin: EdgeInsets.only(top: 10, left: 10),
               child: Row(
                 children: [
-                  Icon(Icons.dashboard),
+                  Icon(Icons.directions_bike),
                   SizedBox(width: 5),
                   Text(
-                    "Recommend",
+                    "Adventure",
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
@@ -32,7 +32,7 @@ class RecommendMovie extends StatelessWidget {
               padding: EdgeInsets.only(left: 10),
               height: MediaQuery.of(context).size.height * 0.25,
               width: MediaQuery.of(context).size.width * 1,
-              child: BuildListRecommend(),
+              child: BuildListAdventure(),
             ),
           ],
         ),
@@ -41,22 +41,24 @@ class RecommendMovie extends StatelessWidget {
   }
 }
 
-class BuildListRecommend extends StatelessWidget {
+class BuildListAdventure extends StatelessWidget {
+  const BuildListAdventure({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     CollectionReference movies = Firestore.instance.collection("movies");
 
     return StreamBuilder(
-      stream: movies.where("rating", isGreaterThanOrEqualTo: 9).snapshots(),
+      stream: movies.where("category", arrayContains: "Adventure").snapshots(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
-        return _buildList(context, snapshot.data.documents);
+        return buildList(context, snapshot.data.documents);
       },
     );
   }
 
-  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
+  Widget buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return ListView(
       padding: EdgeInsets.only(top: 5),
       scrollDirection: Axis.horizontal,

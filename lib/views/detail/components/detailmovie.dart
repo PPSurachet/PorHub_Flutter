@@ -25,7 +25,7 @@ class DetailMovie extends StatelessWidget {
           BuildPlayBtn(record: record),
           SizedBox(height: 15),
           Text(
-            record.title,
+            record.title + " " + record.year,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

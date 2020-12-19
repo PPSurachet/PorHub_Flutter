@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/views/home/components/buildImage.dart';
 
-class RecommendMovie extends StatelessWidget {
-  const RecommendMovie({Key key}) : super(key: key);
+class ActionMovie extends StatelessWidget {
+  const ActionMovie({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,10 @@ class RecommendMovie extends StatelessWidget {
               margin: EdgeInsets.only(top: 10, left: 10),
               child: Row(
                 children: [
-                  Icon(Icons.dashboard),
+                  Icon(Icons.games),
                   SizedBox(width: 5),
                   Text(
-                    "Recommend",
+                    "Action",
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
@@ -32,7 +32,7 @@ class RecommendMovie extends StatelessWidget {
               padding: EdgeInsets.only(left: 10),
               height: MediaQuery.of(context).size.height * 0.25,
               width: MediaQuery.of(context).size.width * 1,
-              child: BuildListRecommend(),
+              child: BuildAction(),
             ),
           ],
         ),
@@ -41,13 +41,15 @@ class RecommendMovie extends StatelessWidget {
   }
 }
 
-class BuildListRecommend extends StatelessWidget {
+class BuildAction extends StatelessWidget {
+  const BuildAction({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     CollectionReference movies = Firestore.instance.collection("movies");
 
     return StreamBuilder(
-      stream: movies.where("rating", isGreaterThanOrEqualTo: 9).snapshots(),
+      stream: movies.where("category", arrayContains: "Action").snapshots(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
@@ -58,8 +60,8 @@ class BuildListRecommend extends StatelessWidget {
 
   Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return ListView(
-      padding: EdgeInsets.only(top: 5),
       scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.only(top: 5),
       children: snapshot
           .map((data) => BuildImage(context: context, data: data))
           .toList(),
