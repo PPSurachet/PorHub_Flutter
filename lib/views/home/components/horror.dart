@@ -16,12 +16,13 @@ class HorrorMovie extends StatelessWidget {
               margin: EdgeInsets.only(top: 10, left: 10),
               child: Row(
                 children: [
-                  Icon(Icons.cake),
+                  Icon(Icons.cake, color: Colors.white),
                   SizedBox(width: 5),
                   Text(
                     "Horror",
                     style: TextStyle(
                       fontSize: 25,
+                      color: Colors.white,
                       fontWeight: FontWeight.w500,
                     ),
                   )

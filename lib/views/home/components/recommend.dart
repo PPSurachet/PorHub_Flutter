@@ -16,12 +16,13 @@ class RecommendMovie extends StatelessWidget {
               margin: EdgeInsets.only(top: 10, left: 10),
               child: Row(
                 children: [
-                  Icon(Icons.dashboard),
+                  Icon(Icons.dashboard, color: Colors.white),
                   SizedBox(width: 5),
                   Text(
                     "Recommend",
                     style: TextStyle(
                       fontSize: 25,
+                      color: Colors.white,
                       fontWeight: FontWeight.w500,
                     ),
                   )

@@ -16,12 +16,13 @@ class AdventureMovie extends StatelessWidget {
               margin: EdgeInsets.only(top: 10, left: 10),
               child: Row(
                 children: [
-                  Icon(Icons.directions_bike),
+                  Icon(Icons.directions_bike, color: Colors.white),
                   SizedBox(width: 5),
                   Text(
                     "Adventure",
                     style: TextStyle(
                       fontSize: 25,
+                      color: Colors.white,
                       fontWeight: FontWeight.w500,
                     ),
                   )
