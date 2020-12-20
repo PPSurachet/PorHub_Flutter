@@ -3,15 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:porhub_flutter/models/movie.dart';
 import 'package:porhub_flutter/views/detail/detail_screen.dart';
 
-class BuildlistSearch extends StatelessWidget {
-  const BuildlistSearch({Key key}) : super(key: key);
+class BuildMovieSearch extends StatelessWidget {
+  const BuildMovieSearch({
+    Key key,
+    @required this.searchResult,
+  }) : super(key: key);
+
+  final String searchResult;
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference movies = Firestore.instance.collection("movies");
-
     return StreamBuilder(
-      stream: movies.snapshots(),
+      stream: (searchResult == '')
+          ? Firestore.instance.collection("movies").snapshots()
+          : Firestore.instance
+              .collection("movies")
+              .where('searchKeyword', arrayContains: searchResult)
+              .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
@@ -27,34 +35,22 @@ class BuildlistSearch extends StatelessWidget {
         scrollDirection: Axis.vertical,
         crossAxisCount: 3,
         padding: EdgeInsets.symmetric(horizontal: 2),
-        children: snapshot
-            .map((data) => BuildImageListMovie(context: context, data: data))
-            .toList(),
+        children: snapshot.map((data) => buildInkWell(context, data)).toList(),
       ),
     );
   }
-}
 
-class BuildImageListMovie extends StatelessWidget {
-  final BuildContext context;
-  final DocumentSnapshot data;
-  const BuildImageListMovie({Key key, this.context, this.data})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  InkWell buildInkWell(BuildContext context, DocumentSnapshot data) {
     final record = Movie.fromSnapshot(data);
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => DetailScreen(
-              record: record,
-            ),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => DetailScreen(
+            record: record,
           ),
-        );
-      },
+        ),
+      ),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
         child: ClipRRect(
