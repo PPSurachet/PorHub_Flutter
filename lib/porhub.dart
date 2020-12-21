@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/views/home/home_screen.dart';
 import 'package:porhub_flutter/views/search/search_screen.dart';
+import 'package:porhub_flutter/views/setting/setting.screen.dart';
 
 class PorHub extends StatefulWidget {
   PorHub({Key key}) : super(key: key);
@@ -16,7 +17,7 @@ class _PorHubState extends State<PorHub> {
     HomeScreen(),
     SearchScreen(),
     Center(child: Text("Favorite", style: TextStyle(color: Colors.white))),
-    Center(child: Text("Setting", style: TextStyle(color: Colors.white))),
+    SettingScreen(),
   ];
 
   @override
