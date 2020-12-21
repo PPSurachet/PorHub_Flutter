@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:porhub_flutter/views/favorite/favorite_screen.dart';
 import 'package:porhub_flutter/views/home/home_screen.dart';
 import 'package:porhub_flutter/views/search/search_screen.dart';
 import 'package:porhub_flutter/views/setting/setting.screen.dart';
@@ -16,7 +17,7 @@ class _PorHubState extends State<PorHub> {
   List<Widget> tabs = [
     HomeScreen(),
     SearchScreen(),
-    Center(child: Text("Favorite", style: TextStyle(color: Colors.white))),
+    FavoriteScreen(),
     SettingScreen(),
   ];
 
