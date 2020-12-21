@@ -2,32 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:porhub_flutter/views/home/home_screen.dart';
 import 'package:porhub_flutter/views/search/search_screen.dart';
 
-class BuildPage extends StatefulWidget {
-  BuildPage({Key key}) : super(key: key);
+class PorHub extends StatefulWidget {
+  PorHub({Key key}) : super(key: key);
 
   @override
-  _BuildPageState createState() => _BuildPageState();
+  _PorHubState createState() => _PorHubState();
 }
 
-class _BuildPageState extends State<BuildPage> {
+class _PorHubState extends State<PorHub> {
   int _currentIndex = 0;
 
   List<Widget> tabs = [
     HomeScreen(),
     SearchScreen(),
-    Center(
-      child: Text("Favorite"),
-    ),
-    Center(
-      child: Text("Setting"),
-    ),
+    Center(child: Text("Favorite", style: TextStyle(color: Colors.white))),
+    Center(child: Text("Setting", style: TextStyle(color: Colors.white))),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: tabs[_currentIndex],
+      body: Container(
+        color: Colors.black87,
+        child: tabs[_currentIndex],
+      ),
       bottomNavigationBar: buildBottomNavigationBar(),
     );
   }

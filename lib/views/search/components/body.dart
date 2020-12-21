@@ -6,11 +6,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Column(
-          children: [
-            BuildSearchBar(),
-          ],
-        ),
+        BuildSearchBar(),
       ],
     );
   }

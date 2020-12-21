@@ -17,5 +17,5 @@ class Movie {
         category = map["category"];
 
   Movie.fromSnapshot(DocumentSnapshot snapshot)
-      : this.fromMap(snapshot.data, reference: snapshot.reference);
+      : this.fromMap(snapshot.data(), reference: snapshot.reference);
 }
