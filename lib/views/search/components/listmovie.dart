@@ -15,8 +15,8 @@ class BuildMovieSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: (searchResult == '')
-          ? Firestore.instance.collection("movies").snapshots()
-          : Firestore.instance
+          ? FirebaseFirestore.instance.collection("movies").snapshots()
+          : FirebaseFirestore.instance
               .collection("movies")
               .where('searchKeyword', arrayContains: searchResult)
               .snapshots(),

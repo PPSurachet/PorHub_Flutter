@@ -47,7 +47,8 @@ class BuildListAdventure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference movies = Firestore.instance.collection("movies");
+    CollectionReference movies =
+        FirebaseFirestore.instance.collection("movies");
 
     return StreamBuilder(
       stream: movies.where("category", arrayContains: "Adventure").snapshots(),

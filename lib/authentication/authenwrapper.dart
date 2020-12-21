@@ -9,8 +9,8 @@ class AuthenticationWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FirebaseUser = context.watch<User>();
-    if (FirebaseUser != null) return PorHub();
+    final firebaseUser = context.watch<User>();
+    if (firebaseUser != null) return PorHub();
     return SignInPage();
   }
 }
