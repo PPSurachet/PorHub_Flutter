@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:porhub_flutter/models/movie.dart';
-import 'package:porhub_flutter/views/detail/detail_screen.dart';
+import 'package:porhub_flutter/views/favorite/components/buildlistmovie.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -17,57 +15,34 @@ class FavoriteScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 10),
           height: MediaQuery.of(context).size.height * 0.83,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.star,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      "Favorite",
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               FavoriteMovie(firebaseUser: firebaseUser),
             ],
           ),
         )
       ],
-    );
-  }
-}
-
-class FavoriteMovie extends StatelessWidget {
-  const FavoriteMovie({Key key, this.firebaseUser}) : super(key: key);
-  final User firebaseUser;
-  @override
-  Widget build(BuildContext context) {
-    CollectionReference movies =
-        FirebaseFirestore.instance.collection("movies");
-
-    return StreamBuilder<dynamic>(
-      stream: movies.where('uid', arrayContains: firebaseUser.uid).snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (!snapshot.hasData) return CircularProgressIndicator();
-
-        return buildList(context, snapshot.data.documents);
-      },
-    );
-  }
-
-  Widget buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
-    return Expanded(
-      child: GridView.count(
-        childAspectRatio: (15 / 20),
-        scrollDirection: Axis.vertical,
-        crossAxisCount: 3,
-        padding: EdgeInsets.symmetric(horizontal: 2),
-        children: snapshot.map((data) => buildInkWell(context, data)).toList(),
-      ),
-    );
-  }
-
-  Container buildInkWell(BuildContext context, DocumentSnapshot data) {
-    final record = Movie.fromSnapshot(data);
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.network(
-          record.posterURL,
-          fit: BoxFit.fill,
-        ),
-      ),
     );
   }
 }
