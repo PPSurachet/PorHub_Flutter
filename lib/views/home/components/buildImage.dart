@@ -22,6 +22,7 @@ class BuildImage extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) => DetailScreen(
             record: record,
+            documentsID: data.id,
           ),
         ),
       ),

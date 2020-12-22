@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/models/movie.dart';
 import 'package:porhub_flutter/views/detail/components/btnfavourtie.dart';
@@ -7,7 +8,10 @@ import 'package:porhub_flutter/views/detail/components/category.dart';
 
 class DetailMovie extends StatelessWidget {
   final Movie record;
-  const DetailMovie({Key key, this.record}) : super(key: key);
+  final User firebaseUser;
+  final String documentsID;
+  const DetailMovie({Key key, this.record, this.firebaseUser, this.documentsID})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,11 @@ class DetailMovie extends StatelessWidget {
         children: [
           Category(record: record),
           SizedBox(height: 15),
-          BuildFavourBtn(record: record),
+          BuildFavourBtn(
+            record: record,
+            documentsID: documentsID,
+            firebaseUser: firebaseUser,
+          ),
           SizedBox(height: 15),
           BuildTrailerBtn(record: record),
           SizedBox(height: 15),
