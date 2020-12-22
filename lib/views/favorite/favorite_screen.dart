@@ -17,32 +17,36 @@ class FavoriteScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
-                padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.star,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      "Favorite",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              buildTextFavorite(),
               FavoriteMovie(firebaseUser: firebaseUser),
             ],
           ),
         )
       ],
+    );
+  }
+
+  Container buildTextFavorite() {
+    return Container(
+      padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
+      child: Row(
+        children: <Widget>[
+          Icon(
+            Icons.star,
+            color: Colors.white,
+            size: 30,
+          ),
+          SizedBox(width: 10),
+          Text(
+            "Favorite",
+            style: TextStyle(
+              fontSize: 30,
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

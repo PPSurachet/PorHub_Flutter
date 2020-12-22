@@ -48,6 +48,7 @@ class DetailMovie extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
+                fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.left,
             ),

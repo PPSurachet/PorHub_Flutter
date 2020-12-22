@@ -20,50 +20,54 @@ class BuildFavourBtn extends StatefulWidget {
 }
 
 class _BuildFavourBtnState extends State<BuildFavourBtn> {
+  bool favoriteMovie;
+
   @override
   Widget build(BuildContext context) {
+    favoriteMovie = (widget.record.uid.indexOf(widget.firebaseUser.uid) == -1);
     return Container(
       width: MediaQuery.of(context).size.width * 0.95,
       height: MediaQuery.of(context).size.height * 0.06,
-      child: buildRaisedButtonAdd(),
+      child: buildRaisedButtonAdd(favoriteMovie),
     );
   }
 
-  RaisedButton buildRaisedButtonAdd() {
-    bool favoriteMovie =
-        (widget.record.uid.indexOf(widget.firebaseUser.uid) == -1);
+  RaisedButton buildRaisedButtonAdd(bool favoriteMovie) {
     return RaisedButton(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
       color: Colors.red[900],
       child: Text(
-        favoriteMovie ? "Add Favorite" : "Remove Favorite",
+        // favoriteMovie ? "Add Movie" : "Remove Movie",
+        favoriteMovie ? "Add Movie" : "Remove Movie",
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 20,
         ),
       ),
-      onPressed: () {
-        setState(() {
-          if (favoriteMovie == true) {
-            FirebaseFirestore.instance
-                .collection("movies")
-                .doc(widget.documentsID)
-                .update({
-              "uid": FieldValue.arrayUnion([widget.firebaseUser.uid])
-            });
-          } else {
-            FirebaseFirestore.instance
-                .collection("movies")
-                .doc(widget.documentsID)
-                .update({
-              "uid": FieldValue.arrayRemove([widget.firebaseUser.uid])
-            });
-          }
-        });
-      },
+      onPressed: addFavorite,
     );
+  }
+
+  void addFavorite() {
+    setState(() {
+      if (favoriteMovie) {
+        FirebaseFirestore.instance
+            .collection("movies")
+            .doc(widget.documentsID)
+            .update({
+          "uid": FieldValue.arrayUnion([widget.firebaseUser.uid])
+        });
+      } else {
+        FirebaseFirestore.instance
+            .collection("movies")
+            .doc(widget.documentsID)
+            .update({
+          "uid": FieldValue.arrayRemove([widget.firebaseUser.uid])
+        });
+      }
+    });
   }
 }

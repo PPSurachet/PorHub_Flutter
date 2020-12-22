@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/views/search/components/listmovie.dart';
 
 class BuildSearchBar extends StatefulWidget {
-  BuildSearchBar({Key key}) : super(key: key);
+  final User firebaseUser;
+  BuildSearchBar({Key key, this.firebaseUser}) : super(key: key);
 
   @override
   _BuildSearchBarState createState() => _BuildSearchBarState();
@@ -42,7 +44,10 @@ class _BuildSearchBarState extends State<BuildSearchBar> {
               },
             ),
           ),
-          BuildMovieSearch(searchResult: searchResult),
+          BuildMovieSearch(
+            searchResult: searchResult,
+            firebaseUser: widget.firebaseUser,
+          ),
         ],
       ),
     );

@@ -39,12 +39,25 @@ class FavoriteMovie extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
       child: InkWell(
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.network(
-            record.posterURL,
-            fit: BoxFit.fill,
-          ),
+        child: Stack(
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                record.posterURL,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Positioned(
+              top: 5,
+              right: 5,
+              child: Icon(
+                Icons.star,
+                size: 25,
+                color: Colors.yellow,
+              ),
+            ),
+          ],
         ),
         onTap: () {
           Navigator.push(

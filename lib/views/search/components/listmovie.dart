@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/models/movie.dart';
 import 'package:porhub_flutter/views/detail/detail_screen.dart';
@@ -7,9 +8,11 @@ class BuildMovieSearch extends StatelessWidget {
   const BuildMovieSearch({
     Key key,
     @required this.searchResult,
+    this.firebaseUser,
   }) : super(key: key);
 
   final String searchResult;
+  final User firebaseUser;
 
   @override
   Widget build(BuildContext context) {
@@ -43,21 +46,33 @@ class BuildMovieSearch extends StatelessWidget {
   InkWell buildInkWell(BuildContext context, DocumentSnapshot data) {
     final record = Movie.fromSnapshot(data);
     return InkWell(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+        child: Stack(
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                record.posterURL,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Positioned(
+              top: 5,
+              right: 5,
+              child: (record.uid.indexOf(firebaseUser.uid) != -1)
+                  ? Icon(Icons.star, size: 25, color: Colors.yellow)
+                  : Icon(Icons.star_border, size: 25, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
           builder: (BuildContext context) => DetailScreen(
             record: record,
-          ),
-        ),
-      ),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.network(
-            record.posterURL,
-            fit: BoxFit.fill,
+            documentsID: data.id,
           ),
         ),
       ),
