@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/models/movie.dart';
 
-class BuildPosterMovie extends StatelessWidget {
-  const BuildPosterMovie({
+class BuildImageMovie extends StatelessWidget {
+  const BuildImageMovie({
     Key key,
     @required this.record,
   }) : super(key: key);
