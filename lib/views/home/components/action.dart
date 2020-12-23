@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:porhub_flutter/views/home/components/buildImage.dart';
 
 class ActionMovie extends StatelessWidget {
-  const ActionMovie({Key key}) : super(key: key);
-
+  const ActionMovie({
+    Key key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -53,7 +54,7 @@ class BuildAction extends StatelessWidget {
     return StreamBuilder(
       stream: movies.where("category", arrayContains: "Action").snapshots(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
+        if (!snapshot.hasData) return CircularProgressIndicator();
 
         return _buildList(context, snapshot.data.documents);
       },

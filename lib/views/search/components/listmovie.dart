@@ -24,7 +24,7 @@ class BuildMovieSearch extends StatelessWidget {
               .where('searchKeyword', arrayContains: searchResult)
               .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
+        if (!snapshot.hasData) return CircularProgressIndicator();
 
         return buildList(context, snapshot.data.documents);
       },
@@ -62,7 +62,7 @@ class BuildMovieSearch extends StatelessWidget {
               right: 5,
               child: (record.uid.indexOf(firebaseUser.uid) != -1)
                   ? Icon(Icons.star, size: 25, color: Colors.yellow)
-                  : Icon(Icons.star_border, size: 25, color: Colors.white),
+                  : Container(),
             ),
           ],
         ),

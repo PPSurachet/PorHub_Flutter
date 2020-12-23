@@ -32,7 +32,7 @@ class FavoriteScreen extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Icon(
-            Icons.star,
+            Icons.favorite,
             color: Colors.white,
             size: 30,
           ),

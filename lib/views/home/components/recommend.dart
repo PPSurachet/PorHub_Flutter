@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/views/home/components/buildImage.dart';
 
 class RecommendMovie extends StatelessWidget {
-  const RecommendMovie({Key key}) : super(key: key);
+  const RecommendMovie({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,7 @@ class BuildListRecommend extends StatelessWidget {
     return StreamBuilder(
       stream: movies.where("rating", isGreaterThanOrEqualTo: 9).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
+        if (!snapshot.hasData) return CircularProgressIndicator();
 
         return _buildList(context, snapshot.data.documents);
       },

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/views/home/components/buildImage.dart';
 
@@ -53,7 +54,7 @@ class BuildListAdventure extends StatelessWidget {
     return StreamBuilder(
       stream: movies.where("category", arrayContains: "Adventure").snapshots(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
+        if (!snapshot.hasData) return CircularProgressIndicator();
 
         return buildList(context, snapshot.data.documents);
       },

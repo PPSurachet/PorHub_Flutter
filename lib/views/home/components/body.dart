@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:porhub_flutter/views/home/components/action.dart';
 import 'package:porhub_flutter/views/home/components/adventure.dart';
 import 'package:porhub_flutter/views/home/components/horror.dart';
 import 'package:porhub_flutter/views/home/components/recommend.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
   const Body({Key key}) : super(key: key);
