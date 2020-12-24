@@ -1,16 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfileUser extends StatelessWidget {
-  const ProfileUser({
-    Key key,
-    @required this.firebaseUser,
-  }) : super(key: key);
-
-  final User firebaseUser;
+  const ProfileUser({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final firebaseUser = context.watch<User>();
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Row(

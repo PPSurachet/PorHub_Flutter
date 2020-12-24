@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:porhub_flutter/authentication/authenticate_service.dart';
+import 'package:provider/provider.dart';
 
 class AccountSetting extends StatefulWidget {
   AccountSetting({Key key}) : super(key: key);
@@ -9,7 +11,6 @@ class AccountSetting extends StatefulWidget {
 
 class _AccountSettingState extends State<AccountSetting> {
   bool nontification = true;
-
   bool update = true;
   @override
   Widget build(BuildContext context) {

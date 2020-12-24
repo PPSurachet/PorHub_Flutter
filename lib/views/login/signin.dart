@@ -105,6 +105,32 @@ class SignInPage extends StatelessWidget {
                   ),
                 )
               ],
+            ),
+            SizedBox(height: 30),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      color: Colors.red[900],
+                      child: Text(
+                        "Sign In With Google",
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {
+                        context.read<AuthenicationService>().signInWithGoogle();
+                      },
+                    ),
+                  ),
+                )
+              ],
             )
           ],
         ),
