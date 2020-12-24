@@ -80,19 +80,19 @@ class _PorHubState extends State<PorHub> {
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          title: Text("Home"),
+          label: "Home",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search),
-          title: Text("Search"),
+          label: "Search",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
-          title: Text("Favorite"),
+          label: "Favorite",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
-          title: Text("Setting"),
+          label: "Setting",
         ),
       ],
       onTap: (index) {

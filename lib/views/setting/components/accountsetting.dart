@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:porhub_flutter/authentication/authenticate_service.dart';
-import 'package:provider/provider.dart';
 
 class AccountSetting extends StatefulWidget {
   AccountSetting({Key key}) : super(key: key);

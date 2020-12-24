@@ -15,7 +15,8 @@ class FavoriteMovie extends StatelessWidget {
     return StreamBuilder<dynamic>(
       stream: movies.where('uid', arrayContains: firebaseUser.uid).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (!snapshot.hasData) return CircularProgressIndicator();
+        if (!snapshot.hasData)
+          return Center(child: CircularProgressIndicator());
 
         return buildList(context, snapshot.data.documents);
       },

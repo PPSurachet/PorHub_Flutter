@@ -24,7 +24,8 @@ class BuildMovieSearch extends StatelessWidget {
               .where('searchKeyword', arrayContains: searchResult)
               .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (!snapshot.hasData) return CircularProgressIndicator();
+        if (!snapshot.hasData)
+          return Center(child: CircularProgressIndicator());
 
         return buildList(context, snapshot.data.documents);
       },
