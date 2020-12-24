@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:porhub_flutter/main.dart' as app;
 
-void main() => runZoned(_testMain);
+void main() => run(_testMain);
 
 void _testMain() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
